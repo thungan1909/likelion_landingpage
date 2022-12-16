@@ -1,4 +1,6 @@
  @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
+ 
+ /* Reset CSS */
  * {
     margin: 0;
     padding: 0;
@@ -18,6 +20,7 @@
  }
 
 
+
  /* CUSTOM */
 
 .Container{
@@ -29,22 +32,29 @@ h3 {
    font-weight: 400;
    margin: 10px 0;
 }
+
+/* 1. Vị trí
+2. Kích thước (Width, height)
+3. Màu sắc
+4. Hình dáng (Kiểu chữ,  */
+
+
  /* BEGIN: NAVBAR */
  #navbar{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between ;
-    align-items: center;
-    width: 100%;
-    background-color: #fff;
-    color: #000;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
-     /* Space of letter */
-     letter-spacing: 4px;
-     padding: var(--p-816);
-     cursor: pointer;
-     position: fixed;
-     z-index: 2;
+   
+   position: fixed;    /* Để cố định navbar khi kéo xuống */
+   display: flex;
+   flex-direction: row;
+   z-index: 2; 
+   padding: var(--p-816);
+   width: 100%;
+   background-color: #fff;
+   color: #000;
+   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+   justify-content: space-between;
+   align-items: center; 
+   letter-spacing: 4px;  /* Space of letter */
+   cursor: pointer;
  }
  #navbar .logo{
     padding: var(--p-816);
@@ -53,25 +63,31 @@ h3 {
     color: #000;
     background-color: #ccc;
  }
+
  #navbar .nav-items{
     display: flex;
-    flex-direction: row;
  }
- #navbar .nav-items li{
-    padding: var(--p-816);
+ #navbar .nav-items li a {
+   padding: var(--p-816);
+   color: #000;
+ }
+
+ #navbar .nav-items li a:visited {
+   color: #000;
  }
  /* END: NAVBAR */
 
 
   /* BEGIN: HERO */
 
-  #hero{
+#hero{
     position: relative;
   }
 
-  #hero .hero__img{
-    width: calc(100% - 20px); 
-    margin-inline: 10px;   /* margin điểm đầu và điểm cuối */
+#hero .hero__img{
+   width: 100%;
+   /* width: calc(100% - 20px); 
+   margin-inline: 10px;   margin điểm đầu và điểm cuối */
   }
 
   #hero h2{
@@ -80,16 +96,19 @@ h3 {
     left: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
+    font-size: 36px;
+    letter-spacing: 4px;
+    font-weight: 400;
 }
 #hero h2 b{
     background-color: #000;
     opacity: 0.75;
     padding: var(--p-816);
 }
-
 /* END: HERO */
 
 /* BEGIN: CONTENT */
+
 .Contents__TitleWrapper{
    padding: 32px 16px;
 }
@@ -106,21 +125,21 @@ h3 {
 .Contents__Description{
    margin: 15px 0px;
 }
-/* Begin: Projects */
 
+
+/* BEGIN: PROJECTS */
 
 #Projects .Projects__cards{
    display: flex;
    flex-wrap: wrap;
    padding: 0px 8px;
    justify-content: space-between;
-   gap: 1rem;
-
+   gap: 1rem; 
+   margin: 0px 8px;
 }
 #Projects .Projects__cards li{
-   width: calc(100% / 4 - 1rem)  ;
    position: relative;
-   /* margin: 0px 8px 16px 8px; */
+   width: calc(100% / 4 - 1rem) ;   /* Tru di khoang gap */
 }
 
 #Projects .Projects__cards li img{
@@ -134,10 +153,9 @@ h3 {
    background-color: #000;
    color: #fff;
    padding: 8px 16px;
-   font-size: 15px;
+   font-size: var(--f-size);
    text-transform: capitalize;     /* Uppercase the first letters */
 }
-
 
 /* END: PROJECTS */
 
@@ -148,7 +166,6 @@ h3 {
    flex-wrap: wrap;
    justify-content: space-between;
    gap: 1rem;
-
 }
 
 .About__Card{
@@ -163,17 +180,25 @@ h3 {
    padding: 0px 8px;
 }
 
+.Card__Img {
+   width: 100%;
+}
+
 .Card__Name{
    margin: 10px 0px;
    font-size: 24px;
+   display: block;
 }
 
 .Card__Role {
    margin: 15px 0px;
    opacity: 0.6;
+   display: block;
 }
 
-
+.Card__Desc{
+   margin: 15px 0px;
+}
 
 .Card__Btn{
    padding: var(--p-816);
@@ -185,7 +210,7 @@ h3 {
    text-transform: none;
    border: none;
    cursor: pointer;
-   transition: linear;
+   transition: all .25s linear;
 }
 
 .Card__Btn:hover{
@@ -196,15 +221,21 @@ h3 {
 
 /* BEGIN : CONTACT */
 
-
 .form__contact input {
    padding: 8px;
-   border: 1px solid #ccc;
-   font-size: 15px;
    width: 100%;
    display: block;
+   border: 1px solid #ccc;
+   font-size: var(--f-size);
    cursor: text;
 }
+
+/* Another way: 
+#contact .form-contact input:not(:first-child) {
+    margin-block: 16px;
+    padding-block: 8px;
+}
+ */
 .form__email, .form__subject, .form__comment {
    margin: 16px 0px;
 }
@@ -224,8 +255,14 @@ h3 {
    text-align: center;
    cursor: pointer;
    width: fit-content;
+   transition: all .25s linear;
 }
 
+.form__btn:hover{
+   border: 1px solid #ccc;
+   background-color: #ccc;
+   color: #000;
+}
 /* BEGIN: MAP */
 
 .map__wrapper {
@@ -240,21 +277,48 @@ h3 {
 
 /* BEGIN: FOOTER */
 #footer{
-   padding: 16px 0px;
+   padding: 16px 0px;    /*Hoac padding -block: 16px */
    background-color: #000;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+   text-align: center;
 }
 
 #footer .footer__content{
    color: #FFF;
    font-size: var(--f-size);
    margin: 15px 0px;
-   
-
 }
 #footer .footer__content a{
    color: inherit;
    font-size: var(--f-size);
+}
+#footer .footer__content a:hover{
+   color: greenyellow;
+}
+
+
+/* MEDIA QUERY */
+
+
+/* Tablet */
+
+@media screen and (max-width: 992px) {
+   
+   #Projects .Projects__cards li {
+      width: calc(100% / 2 - 1rem) ;
+   }
+
+   .About__Card {
+      width: calc(100% / 2 - 1rem) ;
+   }
+}
+/* Mobile */
+
+@media screen and (max-width: 600px) {
+   #Projects .Projects__cards li {
+      width: 100% ;
+   }
+
+   .About__Card {
+      width: 100% ;
+   }
 }
